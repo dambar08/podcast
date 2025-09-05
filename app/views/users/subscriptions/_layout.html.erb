@@ -1,0 +1,19 @@
+<div class="container mx-auto">
+  <div>
+    <div>Back to Podcasts</div>
+  </div>
+  <div class="flex flex-row">
+    <nav class="max-w-sm w-full">
+      <ul class="flex flex-col gap-2 ">
+        <li><%= link_to "Subscription", user_users_subscriptions_path, class: "hover:bg-neutral-100 rounded-lg px-2 py-1 block" %></li>
+        <li><%= link_to "Plan", plans_user_users_subscriptions_path, class: "hover:bg-neutral-100 rounded-lg px-2 py-1 block" %></li>
+        <li><%= link_to "Owner", owner_user_users_subscriptions_path, class: "hover:bg-neutral-100 rounded-lg px-2 py-1  block" %></li>
+        <li><%= link_to "Magic Mastering", mastering_settings_user_users_subscriptions_path, class: "hover:bg-neutral-100 rounded-lg px-2 py-1  block" %></li>
+        <li><%= link_to "Cohost AI", cohost_settings_user_users_subscriptions_path, class: "hover:bg-neutral-100 rounded-lg px-2 py-1  block" %></li>
+      </ul>
+    </nav>
+    <div class="flex-1">
+      <%= yield %>
+    </div>
+  </div>
+</div>

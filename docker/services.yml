@@ -1,0 +1,18 @@
+# This configuration is intended for development purpose, it's **your** responsibility to harden it for production
+name: podcast
+services:
+  redis:
+    volumes:
+      - podcast:/data
+    extends:
+      file: ./redis.yml
+      service: redis
+  postgresql:
+    volumes:
+      - podcast_postgres_data:/var/lib/postgresql/data/
+    extends:
+      file: ./postgresql.yml
+      service: postgresql
+volumes:
+  podcast:
+  podcast_postgres_data:

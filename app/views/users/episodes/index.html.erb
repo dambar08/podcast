@@ -1,0 +1,91 @@
+<% content_for :title, "Episodes" %>
+<div class="container mx-auto">
+  <div class="w-full">
+    <div class="flex justify-between items-center">
+      <h1 class="font-bold text-4xl">All Episodes</h1>
+      <%= link_to "Upload a New Episode", new_user_users_episode_path, class: "rounded-md px-3 py-2 bg-black  text-white block font-medium" %>
+    </div>
+    <div id="episodes" class="min-w-full divide-y divide-gray-200 space-y-5">
+      <div>
+        <div class="hidden md:flex gap-8 justify-between items-center py-6 px-0  pb-3 text-2xs text-gray uppercase border-b ">
+          <div class="w-full grid grid-cols-12 items-center">
+            <div class="md:col-span-8 flex flex-col md:flex-row md:gap-4">
+              <div class="basis-28">Date</div>
+              <div class="">Episode</div>
+            </div>
+            <div class="md:col-start-9 md:col-span-2 col-start-1 col-end-1 text-center">Duration</div>
+            <div class="md:col-start-11 md:col-span-2 col-start-1 col-end-1 text-center">Downloads</div>
+          </div>
+          <div class="basis-[65px] grow-0 shrink-0"></div>
+        </div>
+        <% if @episodes.any? %>
+          <% @episodes.each do |episode| %>
+            <article id="episode_17771625" aria-label="Untitled Episode" class=" episode episode--not_live flex gap-8 justify-between items-center py-4 md:group-[.current-episodes]:py-8 md:py-6 px-5 md:group-[.current-episodes]:px-8 md:px-0 relative">
+              <div class="w-full grid md:grid-cols-12 grid-cols-1 items-center">
+                <div class="md:col-span-8 flex flex-col md:flex-row md:items-center md:gap-6">
+                  <div class="hidden w-16 md:group-[.episode-history]:hidden md:block">
+                    <div class="episode__date w-16 flex flex-col text-center bg-gray-100 rounded-md group-[.cohost-processing]:!border-purple">
+                      <div class="month py-0.5 text-[10px] text-white font-light bg-green-600 rounded-t-[5px] tracking-wider uppercase group-[.cohost-processing]:!bg-purple-600">Sep</div>
+                      <div class="day pt-3 pb-2 text-[32px] font-light leading-6 group-[.cohost-processing]:text-purple"> 2</div>
+                      <div class="day_of_week pb-1 text-[8px] text-gray tracking-wide uppercase ">Tuesday</div>
+                    </div>
+                  </div>
+                  <div class="md:group-[.episode-history]:flex items-center">
+                    <div class="flex items-center">
+                      <div class="hidden native:flex gap-1 text-xs font-bold">
+                      </div>
+                      <div class="md:group-[.current-episodes]:hidden native:hidden past-episodes-date pr-2 md:text-base text-xs text-gray md:font-normal font-medium">
+                        <div class="md:w-28">
+                          Sep  2, 2025
+                        </div>
+                      </div>
+                      <div class="md:group-[.episode-history]:hidden native:hidden episode__status--not_live md:pl-0 text-xs font-medium uppercase">
+                        <span class="pr-2">Not Live</span>
+                      </div>
+                      <div class="hidden grow md:group-[.episode-history]:block relative  status-dot md:w-2 md:h-2 rounded-full px-1" aria-role="status">
+                        <span class="sr-only">Episode is not_live</span>
+                      </div>
+                      <div class="md:group-[.episode-history]:hidden flex w-auto gap-1 items-center">
+                      </div>
+                    </div>
+                    <div class="md:group-[.episode-history]:ml-1">
+                      <div class="group-[.episode-history]:flex flex-col md:flex-row items-start md:gap-2">
+                        <div class="flex flex-wrap items-center leading-tight">
+                          Waiting for audio file... 
+                          <%= link_to "Untitled Episode",  edit_user_users_episode_path(id: episode.id), title: "Untitled Episode", class: "text-green-800 md:font-normal font-bold" %>
+                          <%= link_to "Untitled Episode",  edit_user_users_episode_path(id: episode.id), title: "Untitled Episode", class: "absolute inset-0", tabindex: "-1", "aria-label": "Untitled Episode" %>
+                        </div>
+                      </div>
+                      <div class="free_account_notice text-xs text-gray relative z-10">
+                        Since you are on a free account, this episode will be deleted in <strong class="text-red">90 days</strong>.
+                        <a class="link-dark-green native:hidden" href="https://www.buzzsprout.com/admin/2532702/subscription/plans">Upgrade to save</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="hidden native:flex items-center gap-1 native:pt-1 text-xs text-gray font-medium">
+                  <div class="status-dot md:hidden px-1 w-2 h-2 rounded-full" aria-role="status">
+                    <span class="sr-only">Episode is not_live</span>
+                  </div>
+                  <div>
+                    Sep  2, 2025
+                  </div>
+                </div>
+              </div>
+              <div class="grow-0 shrink-0 md:basis-[65px]">
+                <div class="hidden md:group-[.episode-history]:grid grid-cols-2 grid-auto-rows gap-1 justify-center items-center">
+                </div>
+                <img src="/images/artworks_cover.jpg" class="w-[50px] h-[50px] rounded md:group-[.episode-history]:hidden hidden md:block" loading="lazy">
+              </div>
+            </article>
+          <% end %>
+        <% else %>
+          <div class="text-center my-10">
+            <div colspan="4" >No episodes found.</div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

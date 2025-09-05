@@ -1,0 +1,7 @@
+<% content_for :title, "New episode" %>
+<div class="container mx-auto">
+  <div class="bg-neutral-200 rounded-lg p-16 py-32 flex flex-col items-center justify-center">
+    <div class="text-4xl font-bold text-center">Drags audio file here or choose a file</div>
+      <%= button_to "Skip and upload later", skip_audio_file_user_users_episodes_path, method: :post, data: { turbo_method: :post }, class: "text-neutral-500 text-sm text-center" %>
+  </div>
+</div>

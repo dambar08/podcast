@@ -1,0 +1,5 @@
+{
+  "key": "cmd+option+n",
+  "command": "explorer.newFile",
+  "when": "explorerViewletFocus"
+}

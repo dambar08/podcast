@@ -1,0 +1,38 @@
+<% content_for :secondary_navigation do %>
+  <div class="container mx-auto">
+    <%= render "users/shared/secondary_navigation" %>
+  </div>
+<% end %>
+<%= render "users/shared/layout" do %>
+  <div class="container mx-auto">
+    <div class="space-y-6 py-12">
+      <div class="">
+        <div class="text-4xl font-bold">Your podcast is 5 days old.</div>
+        <div>Upload and publish an episode to score achievements!</div>
+      </div>
+      <div class="grid grid-cols-2  gap-4 ">
+        <div class="flex flex-col items-center justify-center bg-gray-200 rounded-lg space-y-3 py-8">
+          <div class="text-xl">Podcast Downloads</div>
+          <div class="font-bold text-5xl">0</div>
+          <div class="text-center">You only need 10 more downloads for your next achievement.</div>
+        </div>
+        <div class="flex flex-col items-center justify-center bg-gray-200 rounded-lg space-y-3 py-8">
+          <div class="text-xl">Episodes Published</div>
+          <div class="font-bold text-5xl">0</div>
+          <div class="text-center">Publish 1 more episode to receive your next achievement.</div>
+        </div>
+      </div>
+      <div class="divide-y">
+        <div class="py-6">
+          <div class="font-bold text-3xl">Podcast Downloads</div>
+          <div>0 achievements earned</div>
+          <div>10</div>
+        </div>
+        <div class="py-6">
+          <div class="font-bold text-3xl">Episodes Published</div>
+          <div>0 achievements earned</div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

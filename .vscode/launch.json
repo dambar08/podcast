@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Rails::Development",
+      "type": "rdbg",
+      "request": "launch",
+      "script": "bin/rails server",
+    //   "args": ["server", "-b", "0.0.0.0", "-p", "3002"],
+      "cwd": "${workspaceRoot}"
+    },
+    {
+      "type": "rdbg",
+      "name": "Debug current file",
+      "request": "launch",
+      "script": "${file}",
+      "args": [],
+      "askParameters": true
+    },
+    {
+      "type": "rdbg",
+      "name": "Attach with rdbg",
+      "request": "attach"
+    }
+  ]
+}

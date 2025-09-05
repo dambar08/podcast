@@ -1,0 +1,9 @@
+<div class="flex flex-row items-center justify-end">
+  <div>My Podcasts</div>
+  <div>Resources</div>
+  <div>Help</div>
+  <div>Settings</div>
+</div>
+<div class="container mx-auto">
+  <%= content_for?(:primary_navigation) ? yield(:primary_navigation) : render(partial: "users/shared/primary_navigation") %>
+</div>

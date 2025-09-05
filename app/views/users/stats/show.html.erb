@@ -1,0 +1,78 @@
+<% content_for :secondary_navigation do %>
+  <div class="container mx-auto">
+    <%= render "users/shared/secondary_navigation" %>
+  </div>
+<% end %>
+<%= render "users/shared/layout" do %>
+  <div class="container mx-auto">
+    <div class="space-y-6 py-12">
+      <div class="text-3xl">
+        <span class="font-bold">0 downloads</span> in the <span class="font-bold">last 30 days</span>.
+      </div>
+      <nav>
+        <ul class="flex flex-row items-center justify-center gap-4">
+          <li><%= link_to "Last 7 days", user_users_stats_path(days:1), class: "rounded-full bg-black text-white text-xs font-bold uppercase px-2 py-2" %></li>
+          <li><%= link_to "Last 30 days", user_users_stats_path(days:5), class: "rounded-full bg-black text-white text-xs font-bold uppercase px-2 py-2" %></li>
+          <li><%= link_to "Last 90 days", user_users_stats_path(days:10), class: "rounded-full bg-black text-white text-xs font-bold uppercase px-2 py-2" %></li>
+          <li><%= link_to "All time", user_users_stats_path(days: "all"), class: "rounded-full bg-black text-white text-xs font-bold uppercase px-2 py-2" %></li>
+        </ul>
+      </nav>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <div class="flex flex-row items-center gap-1 py-2">
+            <div class="text-3xl font-bold">Top Episodes</div>
+            <div class="text-neutral-500">(All Time)</div>
+          </div>
+          <div class="divide-y">
+            <div class="flex flex-row items-center justify-between gap-2 py-2">
+              <div>Untitled Episode</div>
+              <div class="font-bold">0</div>
+            </div>
+            <div class="flex flex-row items-center justify-between gap-2 py-2">
+              <div >Untitled Episode</div>
+              <div>0</div>
+            </div>
+            <div class="underline flex flex-row items-center justify-between gap-2 py-2">See all episodes</div>
+          </div>
+        </div>
+        <div>
+          <div class="flex flex-row items-center gap-1 py-2">
+            <div class="text-3xl font-bold">Top Apps</div>
+            <div class="text-neutral-500">(Last 5 Episodes)</div>
+          </div>
+          <div class="divide-y">
+            <div class="flex flex-row items-center justify-between gap-2 py-2">
+              <div>No Apps Available</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 bg-yellow-500 rounded-lg p-8">
+        <div>
+          <div class="font-bold uppercase">The Podcast Predictor</div>
+          <div>We forecast your next episode will receive</div>
+          <div class="text-5xl font-bold">0 Downloads</div>
+          <div><span class="font-bold">The Podcast Predictor</span> displays how many unique downloads we expect your next episode to have within its first 90 days of life. Learn more about predictions.</div>
+        </div>
+        <div class="grid items-center justify-center grid-cols-3 gap-0">
+          <div>
+            <div>Last 7 Days</div>
+            <div>0</div>
+          </div>
+          <div>
+            <div>Last 30 Days</div>
+            <div>0</div>
+          </div>
+          <div>
+            <div>Last 90 Days</div>
+            <div>0</div>
+          </div>
+          <div class="col-span-3">
+            <div>All Time Total Downloads</div>
+            <div>0</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,87 @@
+<% content_for :secondary_navigation do %>
+  <div class="container mx-auto">
+    <%= render "users/shared/secondary_navigation" %>
+  </div>
+<% end %>
+<%= render "users/shared/layout" do %>
+  <div class="container mx-auto">
+    <div class="space-y-6 py-12">
+      <div class="flex flex-row items-center justify-center gap-4">
+        <div class="rounded-full bg-black text-white text-xs font-bold uppercase px-2 py-2">Last Episode</div>
+        <div  class="rounded-full bg-black text-white text-xs font-bold uppercase px-2 py-2">Last 5 Episodes</div>
+        <div  class="rounded-full bg-black text-white text-xs font-bold uppercase px-2 py-2">Last 10 Episodes</div>
+        <div  class="rounded-full bg-black text-white text-xs font-bold uppercase px-2 py-2">All Episodes</div>
+      </div>
+      <div>
+        <div class="p-4 flex md:block relative h-auto md:h-[540px] gap-4 md:gap-10 mt-0 md:mt-5 py-0 md:py-14 px-5 md:px-0 text-center border-0 md:border-2 border-background bg-none bg-[center_top_1rem] md:bg-[url('stats_locations.svg')] bg-no-repeat overflow-x-scroll no-scrollbar">
+          <div class="left-[200px] top-[140px] p-4  bg-dark-green-100 md:bg-white rounded-lg md:border md:shadow-md static md:absolute basis-48 md:grow grow-0 shrink-0">
+            <div class="text-dark-green font-medium text-lg">North America</div>
+            <div class="flex flex-col-reverse md:flex-row items-center justify-center gap-0 md:gap-1 text-base">
+              <div class="flex items-center justify-center gap-1 text-dark-green">
+                <div class="text-base md:text-xl font-bold text-green">0</div>
+                <div class="text-sm">Downloads</div>
+                <div class="hidden md:inline">-</div>
+              </div>
+              <div class="py-0.5 md:py-0 text-3xl md:text-base font-bold md:font-normal opacity-100 md:opacity-60">0%</div>
+            </div>
+          </div>
+          <div class="left-[300px] top-[355px] p-4 bg-dark-green-100 md:bg-white rounded-lg md:border md:shadow-md static md:absolute basis-48 md:grow grow-0 shrink-0">
+            <div class="text-dark-green font-medium text-lg">South America</div>
+            <div class="flex flex-col-reverse md:flex-row items-center justify-center gap-0 md:gap-1 text-base">
+              <div class="flex items-center justify-center gap-1 text-dark-green">
+                <div class="text-base md:text-xl font-bold text-green">0</div>
+                <div class="text-sm">Downloads</div>
+                <div class="hidden md:inline opacity-60">-</div>
+              </div>
+              <div class="py-0.5 md:py-0 text-3xl md:text-base opacity-100 md:opacity-60">0%</div>
+            </div>
+          </div>
+          <div class="left-[600px] top-[50px] p-4 bg-dark-green-100 md:bg-white rounded-lg md:border md:shadow-md static md:absolute basis-48 md:grow grow-0 shrink-0">
+            <div class="text-dark-green font-medium text-lg">Europe</div>
+            <div class="flex flex-col-reverse md:flex-row items-center justify-center gap-0 md:gap-1 text-base">
+              <div class="flex items-center justify-center gap-1 text-dark-green">
+                <div class="text-base md:text-xl font-bold text-green">0</div>
+                <div class="text-sm">Downloads</div>
+                <div class="hidden md:inline opacity-60">-</div>
+              </div>
+              <div class="py-0.5 md:py-0 text-3xl md:text-base opacity-100 md:opacity-60">0%</div>
+            </div>
+          </div>
+          <div class="right-55 top-42 p-4 bg-dark-green-100 md:bg-white rounded-lg md:border md:shadow-md static md:absolute basis-48 md:grow grow-0 shrink-0">
+            <div class="text-dark-green font-medium text-lg">Asia</div>
+            <div class="flex flex-col-reverse md:flex-row items-center justify-center gap-0 md:gap-1 text-base">
+              <div class="flex items-center justify-center gap-1 text-dark-green">
+                <div class="text-base md:text-xl font-bold text-green">0</div>
+                <div class="text-sm">Downloads</div>
+                <div class="hidden md:inline opacity-60">-</div>
+              </div>
+              <div class="py-0.5 md:py-0 text-3xl md:text-base opacity-100 md:opacity-60">0%</div>
+            </div>
+          </div>
+          <div class="left-[570px] top-[260px] p-4 bg-dark-green-100 md:bg-white rounded-lg md:border md:shadow-md static md:absolute basis-48 md:grow grow-0 shrink-0">
+            <div class="text-dark-green font-medium text-lg">Africa</div>
+            <div class="flex flex-col-reverse md:flex-row items-center justify-center gap-0 md:gap-1 text-base">
+              <div class="flex items-center justify-center gap-1 text-dark-green">
+                <div class="text-base md:text-xl font-bold text-green">0</div>
+                <div class="text-sm">Downloads</div>
+                <div class="hidden md:inline opacity-60">-</div>
+              </div>
+              <div class="py-0.5 md:py-0 text-3xl md:text-base opacity-100 md:opacity-60">0%</div>
+            </div>
+          </div>
+          <div class="right-[570px] top-[250px] p-4 bg-dark-green-100 md:bg-white rounded-lg md:border md:shadow-md static md:absolute basis-48 md:grow grow-0 shrink-0">
+            <div class="text-dark-green font-medium text-lg">Oceania</div>
+            <div class="flex flex-col-reverse md:flex-row items-center justify-center gap-0 md:gap-1 text-base">
+              <div class="flex items-center justify-center gap-1 text-dark-green">
+                <div class="text-base md:text-xl font-bold text-green">0</div>
+                <div class="text-sm">Downloads</div>
+                <div class="hidden md:inline opacity-60">-</div>
+              </div>
+              <div class="py-0.5 md:py-0 text-3xl md:text-base opacity-100 md:opacity-60">0%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

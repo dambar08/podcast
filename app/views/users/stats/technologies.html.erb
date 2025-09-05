@@ -1,0 +1,43 @@
+<% content_for :secondary_navigation do %>
+  <div class="container mx-auto">
+    <%= render "users/shared/secondary_navigation" %>
+  </div>
+<% end %>
+<%= render "users/shared/layout" do %>
+  <div class="container mx-auto">
+    <div class="space-y-6 py-12">
+      <nav>
+        <ul class="flex flex-row items-center justify-center gap-4">
+          <li><%= link_to "Last Episode", technologies_user_users_stats_path(count:1), class: "rounded-full bg-black text-white text-xs font-bold uppercase px-2 py-2" %></li>
+          <li><%= link_to "Last 5 Episodes", technologies_user_users_stats_path(count:5), class: "rounded-full bg-black text-white text-xs font-bold uppercase px-2 py-2" %></li>
+          <li><%= link_to "Last 10 Episodes", technologies_user_users_stats_path(count:10), class: "rounded-full bg-black text-white text-xs font-bold uppercase px-2 py-2" %></li>
+          <li><%= link_to "All Episodes", technologies_user_users_stats_path(count: "all"), class: "rounded-full bg-black text-white text-xs font-bold uppercase px-2 py-2" %></li>
+        </ul>
+      </nav>
+      <div class="grid grid-cols-3 gap-4">
+        <div>
+          <div class="text-3xl font-bold">Top App</div>
+          <div>
+            <div>No Apps Available</div>
+          </div>
+        </div>
+        <div>
+          <div class="text-3xl font-bold">Top Device</div>
+          <div>
+            <div>No Devices Available</div>
+          </div>
+        </div>
+        <div>
+          <div class="text-3xl font-bold">Top Category</div>
+          <div>
+            <div>No Types Available</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="text-3xl font-bold">Apps</div>
+        <div>No Apps Available</div>
+      </div>
+    </div>
+  </div>
+<% end %>

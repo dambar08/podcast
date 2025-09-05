@@ -1,0 +1,2 @@
+module Users::StatsHelper
+end
