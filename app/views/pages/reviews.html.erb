@@ -1,0 +1,45 @@
+<div class="relative">
+  <div class="h-72 bg-green-100 flex flex-col items-center justify-center space-y-4 absolute top-0 left-0 right-0 -z-10">
+    <div class="text-7xl font-bold text-center">Results for podcasters just like you</div>
+    <div class="text-center font-bold">Join over 100,000 people that have launched a podcast with Buzzsprout</div>
+  </div>
+  <div class="container mx-auto py-16 space-y-12 pt-64">
+    <div class="flex items-center justify-center">
+      <div class="max-w-5xl w-full">
+        <div class="grid grid-cols-3 gap-6">
+          <div class="flex flex-col items-center justify-center bg-card text-card-foreground shadow rounded-lg p-4 text-sm">
+            <div class="text-center">Ask Pat</div>
+            <div class="text-center ">"Buzzsprout is great! Their customer service is fantastic and it's a great product. You should check them out."</div>
+            <div class="text-center font-bold">Pat Flynn</div>
+            <div class="text-center">Host, Ask Pat</div>
+          </div>
+          <div class="flex flex-col items-center justify-center bg-card text-card-foreground shadow rounded-lg p-4 text-sm">
+            <div class="text-center">Starve the Doubts Podcast</div>
+            <div class="text-center">"I have been a proud Buzzsprout client for years. The website is easy to use, and the support has always been helpful."</div>
+            <div class="text-center font-bold">Jared Easley</div>
+            <div class="text-center">Co-Founder, Podcast Movement</div>
+          </div>
+          <div class="flex flex-col items-center justify-center bg-card text-card-foreground shadow rounded-lg p-4 text-sm">
+            <div class="text-center">The Come Up Podcast</div>
+            <div class="text-center">"We started hosting our podcast on SoundCloud but switched because we love the fact that we get more value at a better price."</div>
+            <div class="text-center font-bold">Courtney Stephen</div>
+            <div class="text-center">Host, The Come Up Podcast</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col items-center justify-center">
+      <div class="max-w-4xl w-full">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <% @reviews.each_with_index do |review,index| %>
+            <div id="<%= index %>">
+              <div class="font-bold uppercase"><%= review.title %></div>
+              <div class="text-neutral-500"><%= review.description %></div>
+              <div class="text-neutral-700"><%= review.author %></div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
