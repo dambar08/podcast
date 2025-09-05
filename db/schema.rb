@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_04_015859) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_05_115435) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -116,6 +116,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_04_015859) do
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
+  create_table "clicks", force: :cascade do |t|
+    t.bigint "link_id"
+    t.string "ip_address"
+    t.string "user_agent"
+    t.datetime "clicked_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["link_id"], name: "index_clicks_on_link_id"
+  end
+
   create_table "episodes", force: :cascade do |t|
     t.bigint "user_id"
     t.string "title"
@@ -135,8 +145,20 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_04_015859) do
     t.index ["impersonator_id"], name: "index_impersonation_sessions_on_impersonator_id"
   end
 
+  create_table "links", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "title", null: false
+    t.string "url", null: false
+    t.integer "position", default: 0
+    t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_links_on_user_id"
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.bigint "user_id"
+    t.string "action"
     t.bigint "notifiable_id"
     t.string "notifiable_type"
     t.datetime "notified_at"
@@ -180,6 +202,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_04_015859) do
 
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
+    t.string "first_name"
+    t.string "last_name"
     t.string "email_address", null: false
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
@@ -208,7 +232,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_04_015859) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "clicks", "links"
   add_foreign_key "impersonation_sessions", "users", column: "impersonated_id"
   add_foreign_key "impersonation_sessions", "users", column: "impersonator_id"
+  add_foreign_key "links", "users"
   add_foreign_key "sessions", "users"
 end

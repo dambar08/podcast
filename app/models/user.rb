@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :episodes, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :recommendations, dependent: :destroy
+  has_many :links, dependent: :destroy
   has_many :ahoy_events, class_name: "Ahoy::Event", dependent: :delete_all
   has_many :ahoy_visits, class_name: "Ahoy::Visit", dependent: :delete_all
 

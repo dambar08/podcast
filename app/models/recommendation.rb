@@ -1,5 +1,5 @@
 class Recommendation < ApplicationRecord
-  ALLOWED_POLYMORPIC_MODELS = [ "Episode" ].freeze
+  ALLOWED_POLYMORPIC_MODELS = [ "Episode " ].freeze
   belongs_to :user
   belongs_to :recommendable, polymorphic: true
 
