@@ -1,0 +1,2 @@
+module Users::LinksHelper
+end

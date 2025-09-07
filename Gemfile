@@ -49,8 +49,10 @@ group :development, :test do
   # Static analysis for security vulnerabilities [https://brakemanscanner.org/]
   gem "brakeman", require: false
   gem "dotenv-rails", "~> 3.1"
+  gem "faker", "~> 3.5"
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+  gem "rspec-rails", "~> 8.0"
 end
 
 group :development do
@@ -65,12 +67,15 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem "pundit-matchers", "~> 4.0"
+  gem "shoulda-matchers", "~> 6.5"
+  gem "rspec-retry", "~> 0.6.2"
+  gem "timecop", "~> 0.9.10"
+  gem "with_model", "~> 2.2"
 end
 
 gem "pundit", "~> 2.5"
 gem "rolify", "~> 6.0"
-gem "rspec", "~> 3.13"
-gem "rspec-rails", "~> 8.0"
 gem "hotwire-livereload", "~> 2.0"
 gem "acts-as-taggable-on", "~> 12.0"
 gem "pg_search", "~> 2.3"
@@ -79,3 +84,8 @@ gem "stripe", "~> 15.5"
 gem "ahoy_matey", "~> 5.4"
 gem "rack-timeout", "~> 0.7.0"
 gem "rack-cors", "~> 3.0"
+gem "warning", "~> 1.5"
+gem "pagy", "~> 9.4"
+gem "redcarpet", "~> 3.6"
+
+gem "active_storage_validations", "~> 3.0"

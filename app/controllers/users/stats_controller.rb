@@ -1,7 +1,7 @@
 class Users::StatsController < Users::ManagementController
   def show
     set_secondary_navigation_tab("overview")
-    @episodes = Current.user.episodes
+    @episodes = current_podcast.episodes
   end
   def downloads
     set_secondary_navigation_tab("downloads")

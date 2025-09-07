@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :podcasts
+  namespace :users do
+    resources :links
+  end
   get "2532702", to: "embed#index", format: :js
   resource :session
   resources :passwords, param: :token
@@ -19,6 +23,7 @@ Rails.application.routes.draw do
       get :features
       get :pricing
       get :subscriptions
+      get :reviews
       get :stats
     end
   end

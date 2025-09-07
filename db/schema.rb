@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_05_115435) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_06_153825) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -116,6 +116,30 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_05_115435) do
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
+  create_table "badge_achievements", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "rewarder_id"
+    t.bigint "badge_id"
+    t.text "rewarding_context_message"
+    t.text "rewarding_context_message_markdown"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["badge_id"], name: "index_badge_achievements_on_badge_id"
+    t.index ["rewarder_id"], name: "index_badge_achievements_on_rewarder_id"
+    t.index ["user_id", "badge_id"], name: "index_badge_achievements_on_user_id_and_badge_id"
+    t.index ["user_id"], name: "index_badge_achievements_on_user_id"
+  end
+
+  create_table "badges", force: :cascade do |t|
+    t.string "slug", null: false
+    t.string "title", null: false
+    t.string "description", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_badges_on_slug", unique: true
+    t.index ["title"], name: "index_badges_on_title", unique: true
+  end
+
   create_table "clicks", force: :cascade do |t|
     t.bigint "link_id"
     t.string "ip_address"
@@ -127,12 +151,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_05_115435) do
   end
 
   create_table "episodes", force: :cascade do |t|
-    t.bigint "user_id"
+    t.bigint "podcast_id"
     t.string "title"
     t.boolean "expicit_content", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_episodes_on_user_id"
+    t.index ["podcast_id"], name: "index_episodes_on_podcast_id"
   end
 
   create_table "impersonation_sessions", force: :cascade do |t|
@@ -146,14 +170,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_05_115435) do
   end
 
   create_table "links", force: :cascade do |t|
-    t.bigint "user_id"
+    t.bigint "podcast_id"
+    t.string "link_type", null: false
     t.string "title", null: false
     t.string "url", null: false
     t.integer "position", default: 0
     t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_links_on_user_id"
+    t.index ["podcast_id"], name: "index_links_on_podcast_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -169,6 +194,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_05_115435) do
     t.datetime "updated_at", null: false
     t.index ["notifiable_id", "notifiable_type"], name: "index_notifications_on_notifiable_id_and_notifiable_type"
     t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "podcasts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "title"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_podcasts_on_user_id"
   end
 
   create_table "recommendations", force: :cascade do |t|
@@ -232,9 +266,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_05_115435) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "badge_achievements", "badges"
+  add_foreign_key "badge_achievements", "users"
+  add_foreign_key "badge_achievements", "users", column: "rewarder_id"
   add_foreign_key "clicks", "links"
   add_foreign_key "impersonation_sessions", "users", column: "impersonated_id"
   add_foreign_key "impersonation_sessions", "users", column: "impersonator_id"
-  add_foreign_key "links", "users"
+  add_foreign_key "links", "podcasts"
+  add_foreign_key "podcasts", "users"
   add_foreign_key "sessions", "users"
 end
