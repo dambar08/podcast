@@ -52,6 +52,7 @@ group :test do
   gem "rspec-retry", "~> 0.6.2"
   gem "timecop", "~> 0.9.10"
   gem "with_model", "~> 2.2"
+  gem "webmock", require: false
 end
 
 gem "pundit", "~> 2.5"
@@ -69,3 +70,4 @@ gem "pagy", "~> 9.4"
 gem "redcarpet", "~> 3.6"
 gem "active_storage_validations", "~> 3.0"
 gem "rails-settings-cached", "~> 2.9"
+gem "rqrcode", "~> 3.1"

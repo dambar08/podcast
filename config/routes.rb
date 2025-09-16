@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :qr_code, only: :show
   resources :podcasts
   namespace :users do
     resources :links
