@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :podcasts, dependent: :destroy
   has_many :ahoy_events, class_name: "Ahoy::Event", dependent: :delete_all
   has_many :ahoy_visits, class_name: "Ahoy::Visit", dependent: :delete_all
+  has_many :searches, dependent: :delete_all
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 
