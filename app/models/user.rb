@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_secure_password
 
   has_one :setting, class_name: "Users::Setting", dependent: :delete
+  has_one :notification_setting, class_name: "Users::NotificationSetting", dependent: :delete
 
   has_many :sessions, dependent: :destroy
   has_many :impersonator_support_sessions, class_name: "ImpersonationSession", foreign_key: :impersonator_id, dependent: :destroy

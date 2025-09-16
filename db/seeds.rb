@@ -35,3 +35,6 @@ end
 
 podcast = Podcast.create!(title: "", description: "", user: User.find(1))
 Episode.create!(podcast: podcast)
+
+
+# User.all.in_batch()

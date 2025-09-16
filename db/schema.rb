@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_06_153825) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_16_030413) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -234,6 +234,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_06_153825) do
     t.index ["user_id"], name: "index_sessions_on_user_id"
   end
 
+  create_table "settings", force: :cascade do |t|
+    t.string "var", null: false
+    t.text "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["var"], name: "index_settings_on_var", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username", null: false
     t.string "first_name"
@@ -244,6 +252,26 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_06_153825) do
     t.datetime "updated_at", null: false
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
+  end
+
+  create_table "users_notification_settings", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "var", null: false
+    t.text "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_users_notification_settings_on_user_id"
+    t.index ["var", "user_id"], name: "index_users_notification_settings_on_var_and_user_id", unique: true
+  end
+
+  create_table "users_podcast_settings", force: :cascade do |t|
+    t.bigint "podcast_id"
+    t.string "var", null: false
+    t.text "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["podcast_id"], name: "index_users_podcast_settings_on_podcast_id"
+    t.index ["var", "podcast_id"], name: "index_users_podcast_settings_on_var_and_podcast_id", unique: true
   end
 
   create_table "users_roles", id: false, force: :cascade do |t|
