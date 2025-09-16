@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include Avatarable
   rolify strict: true
   has_secure_password
 
