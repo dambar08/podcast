@@ -41,6 +41,7 @@ group :development do
   gem "active_record_query_trace", "~> 1.8"
   gem "better_errors", "~> 2.10"
   gem "binding_of_caller", "~> 1.0"
+  gem "i18n-tasks", "~> 1.0"
 end
 
 group :test do
