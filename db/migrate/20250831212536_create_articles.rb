@@ -7,6 +7,7 @@ class CreateArticles < ActiveRecord::Migration[8.0]
       t.belongs_to :user
       t.string :title
       t.text :body_markdown
+      t.text :body_text
       t.string :language
       t.boolean :featured
       t.boolean :published
