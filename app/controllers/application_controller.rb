@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  include AllowBrowser, Authentication, Pagy::Backend, Pundit::Authorization
+  include AllowBrowser, SetPlatform, Authentication, Pagy::Backend, Pundit::Authorization,
 
   skip_before_action :track_ahoy_visit
 
