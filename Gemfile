@@ -42,6 +42,7 @@ group :development do
   gem "better_errors", "~> 2.10"
   gem "binding_of_caller", "~> 1.0"
   gem "i18n-tasks", "~> 1.0"
+  gem "hotwire-livereload", "~> 2.0"
 end
 
 group :test do
@@ -58,7 +59,6 @@ end
 
 gem "pundit", "~> 2.5"
 gem "rolify", "~> 6.0"
-gem "hotwire-livereload", "~> 2.0"
 gem "acts-as-taggable-on", "~> 12.0"
 gem "pg_search", "~> 2.3"
 gem "friendly_id", "~> 5.5"
@@ -75,3 +75,4 @@ gem "rqrcode", "~> 3.1"
 gem "cld3", "~> 3.7"
 gem "addressable", "~> 2.8"
 gem "validate_url", "~> 1.0"
+gem "platform_agent", "~> 1.0"
