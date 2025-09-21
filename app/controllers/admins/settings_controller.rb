@@ -24,8 +24,6 @@ class Admins::SettingsController < Admins::ManagementController
 
   private
     def setting_params
-      params.require(:setting).permit(:host, :user_limits, :admin_emails,
-        :captcha_enable, :notification_options)
+      params.require(:setting).permit(:host, :user_limits, :admin_emails, :captcha_enable, :notification_options)
     end
-  end
 end
