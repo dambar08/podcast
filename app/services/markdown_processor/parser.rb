@@ -2,7 +2,7 @@ module MarkdownProcessor
   class Parser
     BAD_XSS_REGEX = [
       /src=["'](data|&)/i,
-      %r{data:text/html[,;][\sa-z0-9]*}i,
+      %r{data:text/html[,;][\sa-z0-9]*}i
     ].freeze
 
     CODE_BLOCKS_REGEX = /(~{3}|`{3}|`{2}|`)[\s\S]*?\1/
@@ -47,7 +47,7 @@ module MarkdownProcessor
 
         html = markdown.render(parsed_liquid.render)
       rescue NoMethodError => e
-        if e.message.include?('line_number')
+        if e.message.include?("line_number")
           # Handle the specific NoMethodError
           Rails.logger.error("Liquid rendering error: #{e.message}")
           html = sanitized_content.to_str

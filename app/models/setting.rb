@@ -44,7 +44,7 @@ class Setting < RailsSettings::Base
       mastodon: nil,
       instagram: nil,
       tiktok: nil,
-      youtube: nil,
+      youtube: nil
     }
   end
 end

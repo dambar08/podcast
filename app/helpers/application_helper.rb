@@ -27,7 +27,7 @@ module ApplicationHelper
   end
 
   def app_url(uri = nil)
-    base_url = "http://localhost" #TODO Change to support production
+    base_url = "http://localhost" # TODO Change to support production
     base_url += ":3000" if Rails.env.development? && !base_url.include?(":3000")
     return base_url unless uri
     Addressable::URI.parse(base_url).join(uri).normalize.to_s

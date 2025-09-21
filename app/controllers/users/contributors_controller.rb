@@ -25,7 +25,7 @@ class Users::ContributorsController < ApplicationController
 
     respond_to do |format|
       if @contributor.save
-        format.html { redirect_to [:users, @contributor], notice: "Contributor was successfully created." }
+        format.html { redirect_to [ :users, @contributor ], notice: "Contributor was successfully created." }
         format.json { render :show, status: :created, location: @contributor }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +38,7 @@ class Users::ContributorsController < ApplicationController
   def update
     respond_to do |format|
       if @contributor.update(contributor_params)
-        format.html { redirect_to [:users, @contributor], notice: "Contributor was successfully updated.", status: :see_other }
+        format.html { redirect_to [ :users, @contributor ], notice: "Contributor was successfully updated.", status: :see_other }
         format.json { render :show, status: :ok, location: @contributor }
       else
         format.html { render :edit, status: :unprocessable_entity }

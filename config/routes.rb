@@ -49,7 +49,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [] do
     namespace :users, path: "" do
-      resources :searches, only: [:show], path: "search"
+      resources :searches, only: [ :show ], path: "search"
       resources :episodes do
         collection do
           post :skip_audio_file
