@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resource :help
+  resources :ads
+  resource :blogs, only: [ :show ]
+  namespace :blog do
+    resources :articles
+  end
   resources :qr_code, only: :show
   resources :podcasts
   namespace :users do
@@ -26,16 +32,23 @@ Rails.application.routes.draw do
       get :subscriptions
       get :reviews
       get :stats
+      get :new
+      get :privacy
+      get :terms_of_service
+      get :refunds
     end
   end
-  resources :blogs, only: [ :index, :show ]
+
 
   namespace :admins do
     resource :dashboard, only: [ :show ]
+    resources :settings
+    mount PgHero::Engine, at: "pghero"
   end
 
   resources :users, only: [] do
     namespace :users, path: "" do
+      resources :searches, only: [:show], path: "search"
       resources :episodes do
         collection do
           post :skip_audio_file

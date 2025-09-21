@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_16_163421) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_21_040825) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -95,6 +95,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_16_163421) do
     t.index ["visitor_token", "started_at"], name: "index_ahoy_visits_on_visitor_token_and_started_at"
   end
 
+  create_table "article_categories", force: :cascade do |t|
+    t.bigint "article_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_article_categories_on_article_id"
+    t.index ["category_id"], name: "index_article_categories_on_category_id"
+  end
+
   create_table "articles", force: :cascade do |t|
     t.string "cached_user_username"
     t.bigint "page_views_count", default: 0
@@ -110,6 +119,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_16_163421) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.string "description"
     t.index ["featured"], name: "index_articles_on_featured"
     t.index ["published"], name: "index_articles_on_published"
     t.index ["published_at"], name: "index_articles_on_published_at"
@@ -141,6 +151,17 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_16_163421) do
     t.index ["title"], name: "index_badges_on_title", unique: true
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.string "color", default: "#6172F3", null: false
+    t.string "slug"
+    t.bigint "parent_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_id"], name: "index_categories_on_parent_id"
+    t.index ["slug"], name: "index_categories_on_slug", unique: true
+  end
+
   create_table "clicks", force: :cascade do |t|
     t.bigint "link_id"
     t.string "ip_address"
@@ -154,7 +175,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_16_163421) do
   create_table "episodes", force: :cascade do |t|
     t.bigint "podcast_id"
     t.string "title"
-    t.boolean "expicit_content", default: false, null: false
+    t.string "description"
+    t.string "summary"
+    t.datetime "published_at"
+    t.integer "episode_number", null: false
+    t.integer "season_number", null: false
+    t.boolean "explicit", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["podcast_id"], name: "index_episodes_on_podcast_id"
@@ -197,12 +223,34 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_16_163421) do
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
+  create_table "pghero_query_stats", force: :cascade do |t|
+    t.text "database"
+    t.text "user"
+    t.text "query"
+    t.bigint "query_hash"
+    t.float "total_time"
+    t.bigint "calls"
+    t.datetime "captured_at", precision: nil
+    t.index ["database", "captured_at"], name: "index_pghero_query_stats_on_database_and_captured_at"
+  end
+
+  create_table "pghero_space_stats", force: :cascade do |t|
+    t.text "database"
+    t.text "schema"
+    t.text "relation"
+    t.bigint "size"
+    t.datetime "captured_at", precision: nil
+    t.index ["database", "captured_at"], name: "index_pghero_space_stats_on_database_and_captured_at"
+  end
+
   create_table "podcasts", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "title"
     t.string "description"
+    t.string "explicit", default: "f", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["explicit"], name: "index_podcasts_on_explicit"
     t.index ["user_id"], name: "index_podcasts_on_user_id"
   end
 
@@ -290,6 +338,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_16_163421) do
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "twitter_username"
+    t.string "facebook_username"
     t.index ["email_address"], name: "index_users_on_email_address", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
   end
@@ -334,9 +384,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_16_163421) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "article_categories", "articles"
+  add_foreign_key "article_categories", "categories"
   add_foreign_key "badge_achievements", "badges"
   add_foreign_key "badge_achievements", "users"
   add_foreign_key "badge_achievements", "users", column: "rewarder_id"
+  add_foreign_key "categories", "categories", column: "parent_id"
   add_foreign_key "clicks", "links"
   add_foreign_key "impersonation_sessions", "users", column: "impersonated_id"
   add_foreign_key "impersonation_sessions", "users", column: "impersonator_id"

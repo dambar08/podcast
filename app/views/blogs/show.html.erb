@@ -1,1 +1,30 @@
-<div></div>
+<%= content_for :head do %>
+  <link rel="canonical" href="<%= app_url(request.path) %>" />
+  <meta name="description" content="Description about company">
+  <%= meta_keywords_default %>
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="<%= app_url(request.path) %>" />
+  <meta property="og:title" content="<%= community_name %>" />
+  <meta property="og:image" content="<%= Setting.main_social_image %>">
+  <meta property="og:description" content="<%= community_description %>" />
+  <meta property="og:site_name" content="<%= community_name %>" />
+  <meta name="twitter:site" content="@<%= Setting.social_media_handles["twitter"] %>">
+  <meta name="twitter:title" content="<%= community_name %>">
+  <meta name="twitter:description" content="<%= community_description %>">
+  <meta name="twitter:image:src" content="<%= Setting.main_social_image %>">
+  <meta name="twitter:card" content="summary_large_image">
+<% end %>
+<div class="container mx-auto">
+  <div class="text-center">Let's Talk Podcasting</div>
+  <div class="text-3xl font-bold text-center">The Buzzsprout Blog</div>
+  <div class="font-bold text-center">Learn the ins-and-outs of podcasting with simple how-tos, articles, and FAQs.</div>
+  <div>
+    <article>
+      <div class="bg-black h-96 w-full"></div>
+      <div class="text-neutral-500 text-sm">September 18, 2025</div>
+      <div class="font-bold text-3xl">75 Podcast Ideas and Topics to Explore in 2025</div>
+      <div>Choosing the right topic for your podcast is foundational to your show's success. In this article, we share 75 ideas so you can choose a topic to stick with!</div>
+      <div class="border-2 border-black text-center p-2">Read More</div>
+    </article>
+  </div>
+</div>

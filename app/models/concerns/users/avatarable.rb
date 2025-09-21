@@ -1,4 +1,4 @@
-module User::Avatarable
+module Users::Avatarable
   extend ActiveSupport::Concern
 
   included do

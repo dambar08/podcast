@@ -3,6 +3,7 @@ class Users::EpisodesController < Users::ManagementController
 
   # GET /users/episodes or /users/episodes.json
   def index
+    set_current_tab("episodes")
     @episodes = Episode.all
   end
 

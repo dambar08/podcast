@@ -33,8 +33,71 @@ users_in_random_order.limit(10).each do |user|
   )
 end
 
-podcast = Podcast.create!(title: "", description: "", user: User.find(1))
-Episode.create!(podcast: podcast)
+
+podcast = Podcast.create!(
+  title: "#{Faker::Music.band} Show",
+  description: Faker::Lorem.paragraph,
+  user: User.first
+)
+
+2.times do |sno|
+  10.times do |eno|
+    podcast.episodes.create!(title: Faker::Book.title, episode_number: eno, season_number: sno)
+  end
+end
+
+# Episode.create!(podcast: podcast)
 
 
 # User.all.in_batch()
+
+
+50.times do
+  Article.create!(
+    cached_user_username: Faker::Internet.username,
+    page_views_count: Faker::Number.between(from: 0, to: 5000),
+    path: "/#{Faker::Internet.slug}",
+    user_id: User.all.sample.id,
+    title: Faker::Book.title,
+    body_markdown: Faker::Lorem.paragraphs(number: 5).join("\n\n"),
+    language: Faker::ProgrammingLanguage.name,
+    featured: Faker::Boolean.boolean,
+    published: Faker::Boolean.boolean,
+    published_at: Faker::Time.between(from: 2.years.ago, to: Time.now),
+    created_at: Faker::Time.between(from: 3.years.ago, to: 1.year.ago),
+    updated_at: Faker::Time.between(from: 1.year.ago, to: Time.now),
+    slug: Faker::Internet.slug
+  )
+end
+
+
+Article.create!(
+  cached_user_username: Faker::Internet.username,
+  page_views_count: Faker::Number.between(from: 0, to: 5000),
+  path: "/#{Faker::Internet.slug}",
+  user_id: User.all.sample.id,
+  title: "How to start a podcast",
+  body_markdown: Faker::Lorem.paragraphs(number: 5).join("\n\n"),
+  language: Faker::ProgrammingLanguage.name,
+  featured: Faker::Boolean.boolean,
+  published: Faker::Boolean.boolean,
+  published_at: Faker::Time.between(from: 2.years.ago, to: Time.now),
+  created_at: Faker::Time.between(from: 3.years.ago, to: 1.year.ago),
+  updated_at: Faker::Time.between(from: 1.year.ago, to: Time.now),
+  slug: Faker::Internet.slug
+)
+
+
+categories = [
+  "Technology",
+  "Health",
+  "Education",
+  "Travel",
+  "Food",
+  "Finance",
+  "Lifestyle"
+]
+
+categories.each do |name|
+  Category.find_or_create_by(name: name)
+end

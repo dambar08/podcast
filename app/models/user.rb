@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  include Avatarable
+  include Users::Avatarable
   rolify strict: true
   has_secure_password
 
@@ -12,6 +12,9 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :recommendations, dependent: :destroy
   has_many :podcasts, dependent: :destroy
+  has_many :badge_achievements, dependent: :delete_all
+  has_many :badge_achievements_rewarded, class_name: "BadgeAchievement", foreign_key: :rewarder_id, inverse_of: :rewarder, dependent: :nullify
+  has_many :badges, through: :badge_achievements
   has_many :ahoy_events, class_name: "Ahoy::Event", dependent: :delete_all
   has_many :ahoy_visits, class_name: "Ahoy::Visit", dependent: :delete_all
   has_many :searches, dependent: :delete_all
@@ -48,6 +51,15 @@ class User < ApplicationRecord
       initial
     end
   end
+
+  def twitter_url
+    "https://twitter.com/#{twitter_username}" if twitter_username.present?
+  end
+
+  def github_url
+    "https://github.com/#{github_username}" if github_username.present?
+  end
+
 
   def purge_later
     Users::PurgeJob.perform_later(self.id)

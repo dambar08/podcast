@@ -1,0 +1,31 @@
+<%= content_for :page_meta do %>
+  <link rel="canonical" href="<%= app_url(@article.path) %>" />
+  <meta name="description" content="<%= @article.description %>">
+  <meta property="keywords" content="<%= @article.tags %>" />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="<%= blog_article_url(@article) %>" />
+  <meta property="og:title" content="<%= @article.title %>" />
+  <meta property="og:description" content="<%= @article.description || t("views.articles.meta.description") %>" />
+  <meta property="og:site_name" content="<%= community_name %>" />
+  <meta name="twitter:site" content="@<%= Setting.social_media_handles["twitter"] %>">
+  <meta name="twitter:creator" content="@<%= @user.twitter_username %>">
+  <meta name="twitter:title" content="<%= @article.title %>">
+  <meta name="twitter:description" content="<%= @article.description || t("views.articles.meta.description") %>">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:widgets:new-embed-design" content="on">
+  <meta name="robots" content="max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <% if @article.published %>
+    <meta property="og:image" content="<%= Setting.main_social_image %>" />
+    <meta name="twitter:image:src" content="<%= Setting.main_social_image %>">
+  <% end %>
+  <% if @article.skip_indexing? %>
+    <meta name="robots" content="noindex">
+    <meta name="robots" content="nofollow">
+  <% end %>
+<% end %>
+<% content_for :title, "Showing article" %>
+<div class="md:w-2/3 w-full">
+  <div class="container mx-auto">
+    <%= render @article %>
+  </div>
+</div>

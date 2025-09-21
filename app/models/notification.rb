@@ -10,8 +10,10 @@ class Notification < ApplicationRecord
 
   before_create :mark_notified_at_time
 
-  def send_new_badge_achievement_notification(badge_achievement)
-    Notifications::NewBadgeAchievementJob.perform_async(badge_achievement.id)
+  class << self
+    def send_new_badge_achievement_notification(badge_achievement)
+      Notifications::NewBadgeAchievementJob.perform_async(badge_achievement.id)
+    end
   end
 
   private

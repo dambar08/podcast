@@ -6,12 +6,13 @@ class Article < ApplicationRecord
 
   friendly_id :title, use: :slugged
 
-
   acts_as_taggable_on :tags
 
-  delegate :username, to: :user, prefix: true
-
   belongs_to :user
+  has_many :article_categories
+  has_many :categories, through: :article_categories
+
+  delegate :username, to: :user, prefix: true
 
   before_validation :normalize_title
 
@@ -24,8 +25,14 @@ class Article < ApplicationRecord
     where(published: true)
       .where("published_at <= ?", Time.current)
   }
-
   scope :unpublished, -> { where(published: false) }
+  scope :featured, -> { where(featured: true) }
+  scope :feed, lambda {
+                 published.includes(:taggings)
+                   .select(
+                     :id, :published_at, :user_id, :title, :path,
+                   )
+               }
 
   scope :sorting, lambda { |value|
     value ||= "creation-desc"
@@ -52,8 +59,16 @@ class Article < ApplicationRecord
     self.language = Languages::Detection.call("#{title}. #{body_text}")
   end
 
+  def username
+    user.username
+  end
+
   def calculated_path
     "/#{username}/#{slug}"
+  end
+
+  def skip_indexing?
+    false
   end
 
   def set_caches
@@ -67,9 +82,9 @@ class Article < ApplicationRecord
     return unless title
 
     self.title = title
-      .gsub(TITLE_CHARACTERS_ALLOWED, " ")
-      # Coalesce runs of whitespace into a single space character
-      .gsub(/\s+/, " ")
-      .strip
+    #   .gsub(TITLE_CHARACTERS_ALLOWED, " ")
+    #   # Coalesce runs of whitespace into a single space character
+    #   .gsub(/\s+/, " ")
+    #   .strip
   end
 end

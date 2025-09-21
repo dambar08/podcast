@@ -1,7 +1,6 @@
 <nav class="flex flex-row items-center gap-2">
   <ul class="flex flex-row items-center gap-6 border-b w-full p-2">
     <li><%= link_to "Podcast Overview", user_users_stats_path, class: "py-2 #{@secondary_navigation_tab == 'overview' ? 'border-b-2 border-black' : ''}" %></li>
-    <% console %>
     <li>
       <div><%= link_to "Episode Downloads", downloads_user_users_stats_path, class: "py-2 #{@secondary_navigation_tab == 'downloads' ? 'border-b-2 border-black' : ''}" %></div>
     </li>

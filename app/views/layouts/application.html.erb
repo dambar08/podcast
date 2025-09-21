@@ -1,15 +1,17 @@
 <%= render "layouts/shared/htmldoc" do %>
-  <header class="flex flex-row items-center justify-between p-6">
-    <div class="font-extrabold text-2xl">Podcast</div>
+  <header class="flex flex-row items-center justify-between p-6 gap-4 md:gap-8">
+    <div class="font-extrabold text-2xl">
+      <%= link_to "Podcast", root_path %>
+    </div>
     <nav>
-      <ul class="flex flex-row items-center gap-8">
+      <ul class="flex flex-row items-center gap-4 md:gap-8">
         <li><%= link_to "Features", features_pages_path %></li>
         <li><%= link_to "Pricing", pricing_pages_path %></li>
         <li>How to Start a Podcast</li>
-        <li><%= link_to "Blog", pricing_pages_path %></li>
+        <li><%= link_to "Blog", blogs_path %></li>
       </ul>
     </nav>
-    <div class="flex flex-row items-center gap-2">
+    <div class="flex flex-row items-center gap-4 md:gap-8">
       <% if Current.user %>
         <div><%= link_to "Logout", session_path,  data: { turbo_method: :delete }  %></div>
       <% else %>
@@ -21,8 +23,8 @@
   <%= yield %>
   <footer class="bg-green-50">
     <div class="container mx-auto py-8 md:py-16">
-      <div class="grid grid-cols-3">
-        <div>
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div class="flex flex-col gap-2 items-center text-center justify-center md:items-start md:justify-start">
           <div class="font-bold">Buzzsprout</div>
           <ul class="flex flex-col gap-2">
             <li><%= link_to "Features", features_pages_path %></li>
@@ -36,13 +38,13 @@
             <li><%= link_to "Log In", new_session_path %></li>
           </ul>
         </div>
-        <div>
+        <div class="flex flex-col gap-2 items-center text-center justify-center md:items-start md:justify-start">
           <div class="font-bold">Resources</div>
           <nav>
             <ul class="flex flex-col gap-2">
               <li>How to Start a Podcast</li>
-              <li>Blog</li>
-              <li>What's New</li>
+              <li><%= link_to "Blog", blogs_path %></li>
+              <li><%= link_to "What's New", new_page_path %></li>
               <li><%= link_to "Platform Stats", stats_pages_path %></li>
               <li>Wordpress Plugin</li>
               <li>Buzzsprout API</li>
@@ -51,11 +53,11 @@
             </ul>
           </nav>
         </div>
-        <div>
+        <div class="flex flex-col gap-2 items-center text-center justify-center md:items-start md:justify-start">
           <div class="font-bold">Legal</div>
           <div class="flex flex-col gap-2">
-            <div>Privacy Policy</div>
-            <div>Terms of Service</div>
+            <div><%= link_to "Privacy Policy", privacy_pages_path %></div>
+            <div><%= link_to "Terms of Service", terms_of_service_pages_path %></div>
             <div>DMCA</div>
           </div>
         </div>

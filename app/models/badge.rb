@@ -9,7 +9,8 @@ class Badge < ApplicationRecord
 
   before_validation :generate_slug
 
-  validates :badge_image, attached: false, content_type: { with: [ "image/jpg", "image/webp", "image/png", "image/jpeg", "image/gif" ], spoofing_protection: true }, dimension: { width: { min: 1280, max: 2280 }, height: { min: 648, max: 1648 } }, size: { less_than: 8.megabytes }
+  # validates :badge_image, attached: false, content_type: { with: [ "image/jpeg", "image/webp", "image/png", "image/jpeg", "image/gif" ], spoofing_protection: true }, dimension: { width: { min: 1280, max: 2280 }, height: { min: 648, max: 1648 } }, size: { less_than: 8.megabytes }
+  validates :badge_image, attached: false, content_type: { with: [ "image/jpeg", "image/webp", "image/png", "image/jpeg", "image/gif" ], spoofing_protection: true }, size: { more_than: 1.megabytes, less_than: 8.megabytes }
 
   def self.id_for_slug(slug)
     select(:id).find_by(slug: slug)&.id

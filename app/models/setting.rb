@@ -36,5 +36,15 @@ class Setting < RailsSettings::Base
       linkedin: nil,
       bluesky: nil
     }
+
+    field :social_media_handles, type: :hash, default: {
+      twitter: nil,
+      facebook: nil,
+      discord: nil,
+      mastodon: nil,
+      instagram: nil,
+      tiktok: nil,
+      youtube: nil,
+    }
   end
 end
