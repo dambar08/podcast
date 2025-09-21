@@ -8,6 +8,6 @@ class Episode < ApplicationRecord
   delegate :user, to: :podcast
   alias_method :author, :user
 
-  validates :title, :episode_number, :season_number presence: true
+  validates :title, :episode_number, :season_number, presence: true
   validates :episode_number, uniqueness: { scope: [:podcast_id, :season_number] }
 end
