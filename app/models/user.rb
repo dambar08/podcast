@@ -21,6 +21,7 @@ class User < ApplicationRecord
 
   normalizes :email_address, with: ->(e) { e.strip.downcase }
 
+  validates :email_address, uniqueness: true
   before_validation :set_username
   before_create :create_users_settings
 
