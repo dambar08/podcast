@@ -69,6 +69,8 @@ Pull requests that do not pass automated checks on CI may not be reviewed. In
 particular, please keep in mind:
 
 - Unit and integration tests (rspec)
+- N+1 Query (brakeman)
+- Auditor (bundle-audit/importmap audit)
 - Code style rules (rubocop)
 - Normalization of locale files (i18n-tasks)
 - Relevant accessibility or performance concerns
