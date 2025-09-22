@@ -10,12 +10,15 @@ class Category < ApplicationRecord
   PAYMENT_COLOR = "#db5a54"
   TRADE_COLOR = "#e99537"
 
+  belongs_to :parent, class_name: "Category", optional: true
+  has_many :children, class_name: "Category", foreign_key: :parent_id, dependent: :destroy
   has_many :article_categories
   has_many :articles, through: :article_categories
 
   scope :alphabetically, -> { order(:name) }
   scope :roots, -> { where(parent_id: nil) }
 
+  normalizes :name, with: ->(e) { e.strip.downcase }
 
   validates :name, :color, presence: true
 
