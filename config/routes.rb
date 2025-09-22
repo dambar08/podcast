@@ -35,6 +35,7 @@ Rails.application.routes.draw do
       get :stats
       get :new
       get :privacy
+      get :dmca
       get :terms_of_service
       get :refunds
     end
