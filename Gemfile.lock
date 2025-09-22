@@ -580,6 +580,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   kamal
+  listen (~> 3.9)
   nokogiri (~> 1.18)
   pagy (~> 9.4)
   pg (~> 1.1)

@@ -39,6 +39,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "listen", "~> 3.9"
   gem "active_record_query_trace", "~> 1.8"
   gem "better_errors", "~> 2.10"
   gem "binding_of_caller", "~> 1.0"
