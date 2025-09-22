@@ -1,4 +1,13 @@
-<div id="<%= dom_id article %>">
-  <div><%= article.title %></div>
-  <div><%= article.description %></div>
-</div>
+<%# locals: (viewmode: "compact", article:) %>
+<% view_mode ||= "compact" %>
+<% if "compact" == view_mode %>
+  <div id="<%= dom_id article %>">
+    <div><%= article.title %></div>
+    <div><%= article.description %></div>
+  </div>
+<% else %>
+  <div id="<%= dom_id article %>">
+    <div><%= article.title %></div>
+    <div><%= article.description %></div>
+  </div>
+<% end %>

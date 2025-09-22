@@ -1,0 +1,24 @@
+en:
+  decorators:
+    category:
+      directory:
+        title: "Directory"
+        description: "A complete guide for publishing your podcast across all major directories"
+      feature:
+        title: "Feature"
+        description: "Everything you need tp know to get the most out of Podcast"
+      stats:
+        title: "Stats"
+        description: "Help articles to understand your podcast statistics"
+      faq:
+        title: "FAQ"
+        description: "Frequently asked questions about podcasting"
+      troubleshoot:
+        title: "Troubleshoot"
+        description: "When things seems to be going wrong, this is where you can find sollutions"
+      subscriptions:
+        title: "Subscriptions"
+        description: "User Podcast subscription to build your listener supported podcast"
+      embedding:
+        title: "Embedding"
+        description: "Placing and customizer the audio player on your website"
