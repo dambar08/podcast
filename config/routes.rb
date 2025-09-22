@@ -38,6 +38,7 @@ Rails.application.routes.draw do
       get :dmca
       get :terms_of_service
       get :refunds
+      get :mobile
     end
   end
 

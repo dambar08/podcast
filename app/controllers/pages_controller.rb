@@ -1,9 +1,12 @@
 require "ostruct"
 class PagesController < ApplicationController
-  allow_unauthenticated_access only: %i[ index features pricing subscriptions stats privacy terms_of_service refunds new dmca ]
+  allow_unauthenticated_access only: %i[ index features pricing subscriptions stats privacy terms_of_service refunds new dmca mobile ]
   before_action :resume_session
 
   def new
+  end
+
+  def mobile
   end
 
   def index

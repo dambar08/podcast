@@ -15,10 +15,14 @@ class Article < ApplicationRecord
   delegate :username, to: :user, prefix: true
 
   before_validation :normalize_title
+  validates :title, presence: true
+
+  validate :published_fields_consistency
 
   before_save :detect_language
   before_save :set_caches
 
+  scope :for_help, -> { Category.find_by(name: "help").articles }
   scope :not_authored_by, ->(user_id) { where.not(user_id: user_id) }
   scope :authored_by, ->(user_id) { where(user_id: user_id) }
   scope :published, lambda {
@@ -86,5 +90,12 @@ class Article < ApplicationRecord
     #   # Coalesce runs of whitespace into a single space character
     #   .gsub(/\s+/, " ")
     #   .strip
+  end
+
+  private
+  def published_fields_consistency
+    if published.present? ^ published_at.present? # XOR: exactly one present
+      errors.add(:base, "published and published_at must be either both present or both absent")
+    end
   end
 end
