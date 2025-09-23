@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  include Users::Avatarable
+  include Users::Avatarable, Users::RansackableAttributes
   rolify strict: true
   has_secure_password
 
