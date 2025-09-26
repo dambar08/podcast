@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_21_040825) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_26_042236) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -172,6 +172,21 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_21_040825) do
     t.index ["link_id"], name: "index_clicks_on_link_id"
   end
 
+  create_table "downloads", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "episode_id"
+    t.datetime "downloaded_at", null: false
+    t.string "domain"
+    t.string "path"
+    t.string "referrer"
+    t.string "user_agent"
+    t.string "ip_address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["episode_id"], name: "index_downloads_on_episode_id"
+    t.index ["user_id"], name: "index_downloads_on_user_id"
+  end
+
   create_table "episodes", force: :cascade do |t|
     t.bigint "podcast_id"
     t.string "title"
@@ -252,6 +267,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_21_040825) do
     t.datetime "updated_at", null: false
     t.index ["explicit"], name: "index_podcasts_on_explicit"
     t.index ["user_id"], name: "index_podcasts_on_user_id"
+  end
+
+  create_table "podrolls", force: :cascade do |t|
+    t.bigint "podcast_id"
+    t.string "podrollable_type"
+    t.bigint "podrollable_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["podcast_id"], name: "index_podrolls_on_podcast_id"
+    t.index ["podrollable_type", "podrollable_id"], name: "index_podrolls_on_podrollable"
   end
 
   create_table "recommendations", force: :cascade do |t|
@@ -391,6 +416,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_21_040825) do
   add_foreign_key "badge_achievements", "users", column: "rewarder_id"
   add_foreign_key "categories", "categories", column: "parent_id"
   add_foreign_key "clicks", "links"
+  add_foreign_key "downloads", "users"
   add_foreign_key "impersonation_sessions", "users", column: "impersonated_id"
   add_foreign_key "impersonation_sessions", "users", column: "impersonator_id"
   add_foreign_key "links", "podcasts"
