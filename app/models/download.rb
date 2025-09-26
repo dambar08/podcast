@@ -2,6 +2,9 @@ class Download < ApplicationRecord
   belongs_to :episode
   belongs_to :user, optional: true
   before_create :extract_domain_and_path
+  validates :downloaded_at, presence: true
+
+  counter_culture :episode
 
   private
 

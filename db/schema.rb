@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_26_042236) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_26_055410) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -183,6 +183,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_26_042236) do
     t.string "ip_address"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["downloaded_at"], name: "index_downloads_on_downloaded_at"
     t.index ["episode_id"], name: "index_downloads_on_episode_id"
     t.index ["user_id"], name: "index_downloads_on_user_id"
   end
@@ -198,6 +199,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_26_042236) do
     t.boolean "explicit", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "downloads_count", default: 0, null: false
     t.index ["podcast_id"], name: "index_episodes_on_podcast_id"
   end
 

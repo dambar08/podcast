@@ -11,5 +11,7 @@ class CreateDownloads < ActiveRecord::Migration[8.0]
       t.string :ip_address
       t.timestamps
     end
+
+    add_index(:downloads, :downloaded_at)
   end
 end
