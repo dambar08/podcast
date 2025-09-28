@@ -1,3 +1,5 @@
-example_id                             | status | run_time       |
--------------------------------------- | ------ | -------------- |
-./spec/requests/qr_code_spec.rb[1:1:1] | passed | 0.2523 seconds |
+example_id                             | status | run_time        |
+-------------------------------------- | ------ | --------------- |
+./spec/requests/pages_spec.rb[1:1:1]   | passed | 0.01511 seconds |
+./spec/requests/pages_spec.rb[1:2:1]   | passed | 0.31112 seconds |
+./spec/requests/qr_code_spec.rb[1:1:1] | passed | 0.2523 seconds  |
